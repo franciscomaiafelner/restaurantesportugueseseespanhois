@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Restaurantes Portugueses e Espanhóis nos EUA • Foco em Nova Iorque</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1020;        /* page background */
+      --card:#121833ee;    /* card bg */
+      --muted:#9fb0d3;     /* muted text */
+      --text:#e8eefc;      /* primary text */
+      --accent:#66e0ff;    /* cyan */
+      --accent-2:#ffb86b;  /* amber */
+      --ring: 0 10px 40px rgba(0,0,0,.35);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text); background:radial-gradient(1200px 600px at 15% -10%, #17305e 0%, transparent 60%),
+                         radial-gradient(900px 500px at 110% 10%, #2a1655 0%, transparent 60%),
+                         var(--bg);
+      line-height:1.55; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+
+    .wrap{max-width:1100px; margin-inline:auto; padding:40px 24px 80px}
+
+    /* Header */
+    .hero{
+      display:grid; gap:16px; align-items:center; justify-items:start; text-align:left;
+      padding:34px; border-radius:var(--radius);
+      background:linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--ring), inset 0 0 0 1px rgba(255,255,255,.06);
+      backdrop-filter: blur(8px);
+    }
+    .badge{display:inline-grid; place-items:center; padding:6px 10px; border-radius:999px;
+      background:rgba(102,224,255,.14); color:#c7f3ff; font-weight:600; font-size:12px; letter-spacing:.3px}
+    h1{font-size: clamp(28px, 4vw, 48px); line-height:1.1; margin:6px 0 2px}
+    .sub{color:var(--muted); max-width:65ch}
+
+    /* Cards grid */
+    .grid{display:grid; grid-template-columns:1fr; gap:22px; margin-top:28px}
+    @media (min-width:880px){ .grid{grid-template-columns:1fr 1fr} }
+
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius);
+      padding:26px; box-shadow: var(--ring); position:relative; overflow:hidden}
+    .card:before{content:""; position:absolute; inset:auto -30% -30% auto; width:180px; height:180px;
+      background:radial-gradient(closest-side, rgba(255,255,255,.12), transparent 70%);}  
+
+    .card h2{margin:0 0 10px; font-size:22px}
+    .flag{font-size:22px; margin-right:8px}
+    .meta{color:var(--muted); font-size:13px; margin-bottom:8px}
+
+    /* Pretty bullet list */
+    ul{list-style:none; padding-left:0; margin:14px 0 18px}
+    li{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:start; padding:12px 10px;
+      border-radius:14px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06)}
+    li + li{margin-top:10px}
+    .dot{width:10px; height:10px; margin-top:6px; border-radius:50%}
+    .pt .dot{background:var(--accent)}
+    .es .dot{background:var(--accent-2)}
+    .emph{font-weight:700}
+
+    /* Buttons */
+    .btns{display:flex; flex-wrap:wrap; gap:10px}
+    .btn{appearance:none; border:none; text-decoration:none; cursor:pointer; font-weight:700;
+      padding:12px 14px; border-radius:12px; display:inline-flex; align-items:center; gap:10px;
+      background:#1d2444; color:#e6f6ff; border:1px solid rgba(255,255,255,.10); transition:.2s transform, .2s box-shadow}
+    .btn:hover{transform:translateY(-2px); box-shadow:0 6px 22px rgba(0,0,0,.35)}
+    .btn .chip{font-size:11px; font-weight:800; opacity:.82; padding:3px 7px; border-radius:999px; border:1px solid rgba(255,255,255,.18)}
+    .btn.pt{background:linear-gradient(130deg, rgba(102,224,255,.22), rgba(102,224,255,.05));}
+    .btn.es{background:linear-gradient(130deg, rgba(255,184,107,.20), rgba(255,184,107,.05));}
+
+    /* Footer note */
+    .note{margin-top:30px; color:var(--muted); font-size:13px}
+    .footer{margin-top:36px; color:var(--muted); font-size:12px; text-align:center}
+    .small{font-size:12px}
+
+    /* Anchor nav */
+    .topnav{display:flex; gap:10px; margin-top:14px}
+    .anchor{font-size:13px; color:#cfeaff; text-decoration:none; padding:8px 10px; border-radius:999px;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08)}
+    .anchor:hover{background:rgba(255,255,255,.10)}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <span class="badge">Estimativas a partir de listagens comerciais (2025)</span>
+      <h1>Restaurantes Portugueses e Espanhóis nos EUA<br><span class="small">com foco em Nova Iorque</span></h1>
+      <p class="sub">Números consolidados a partir de Rentech Digital, Poidata.io e imprensa local. Use os botões para abrir as fontes originais.</p>
+      <nav class="topnav" aria-label="Navegação de secções">
+        <a class="anchor" href="#pt">Ir para Portugueses</a>
+        <a class="anchor" href="#es">Ir para Espanhóis</a>
+      </nav>
+    </header>
+
+    <section class="grid" id="content">
+      <!-- PORTUGUESE CARD -->
+      <article class="card" id="pt" aria-labelledby="pt-title">
+        <h2 id="pt-title"><span class="flag" aria-hidden>🇵🇹</span>Restaurantes Portugueses</h2>
+        <p class="meta">Estados Unidos • Nova Iorque (estado) • Cidade de Nova Iorque</p>
+        <ul class="pt" role="list">
+          <li>
+            <span class="dot" aria-hidden></span>
+            <div>
+              <span class="emph">Total EUA:</span> entre <span class="emph">428 e 508</span> restaurantes — variação entre <span class="emph">Rentech Digital</span> (428, mai/2025) e <span class="emph">Poidata.io</span> (508, ago/2025).
+            </div>
+          </li>
+          <li>
+            <span class="dot" aria-hidden></span>
+            <div>
+              <span class="emph">Estado de Nova Iorque:</span> entre <span class="emph">40 e 51</span> restaurantes (Rentech vs. Poidata).
+            </div>
+          </li>
+          <li>
+            <span class="dot" aria-hidden></span>
+            <div>
+              <span class="emph">Cidade de Nova Iorque:</span> provavelmente <span class="emph">menos de 10</span> restaurantes dedicados. Exemplos: <em>O Lavrador</em> (Queens) e <em>Leitão</em> (Manhattan).
+            </div>
+          </li>
+        </ul>
+        <div class="btns">
+          <a class="btn pt" href="https://rentechdigital.com/smartscraper/business-report-details/list-of-portuguese-restaurants-in-united-states" target="_blank" rel="noopener noreferrer">
+            Abrir Rentech <span class="chip">PT EUA</span>
+          </a>
+          <a class="btn pt" href="https://www.poidata.io/report/portuguese-restaurant/united-states" target="_blank" rel="noopener noreferrer">
+            Abrir Poidata <span class="chip">PT EUA</span>
+          </a>
+          <a class="btn" href="https://madeira.rtp.pt/economia/portugues-abre-espaco-no-coracao-de-manhattan/" target="_blank" rel="noopener noreferrer">
+            Ver reportagem <span class="chip">RTP</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- SPANISH CARD -->
+      <article class="card" id="es" aria-labelledby="es-title">
+        <h2 id="es-title"><span class="flag" aria-hidden>🇪🇸</span>Restaurantes Espanhóis</h2>
+        <p class="meta">Estados Unidos • Nova Iorque (estado) • Cidade de Nova Iorque</p>
+        <ul class="es" role="list">
+          <li>
+            <span class="dot" aria-hidden></span>
+            <div>
+              <span class="emph">Total EUA:</span> entre <span class="emph">1.893 e 2.647</span> restaurantes — <span class="emph">Rentech Digital</span> (1.893, mai/2025) vs. <span class="emph">Poidata.io</span> (2.647, jul/2025).
+            </div>
+          </li>
+          <li>
+            <span class="dot" aria-hidden></span>
+            <div>
+              <span class="emph">Estado de Nova Iorque:</span> entre <span class="emph">436 e 562</span> restaurantes (~20–23% do total nacional mapeado).
+            </div>
+          </li>
+          <li>
+            <span class="dot" aria-hidden></span>
+            <div>
+              <span class="emph">Cidade de Nova Iorque:</span> estimados <span class="emph">200–300</span> restaurantes; só no <em>Brooklyn</em> havia <span class="emph">82</span> listados (2025).
+            </div>
+          </li>
+        </ul>
+        <div class="btns">
+          <a class="btn es" href="https://rentechdigital.com/smartscraper/business-report-details/list-of-spanish-restaurants-in-united-states" target="_blank" rel="noopener noreferrer">
+            Abrir Rentech <span class="chip">ES EUA</span>
+          </a>
+          <a class="btn es" href="https://www.poidata.io/report/spanish-restaurant/united-states" target="_blank" rel="noopener noreferrer">
+            Abrir Poidata <span class="chip">ES EUA</span>
+          </a>
+          <a class="btn" href="https://www.timesunion.com/hudsonvalley/food/article/two-new-spanish-restaurants-bring-tapas-upstate-18585806.php" target="_blank" rel="noopener noreferrer">
+            Ler artigo <span class="chip">Times Union</span>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <p class="note">⚠️ <strong>Nota metodológica:</strong> Não existe censo oficial por tipo de culinária nos EUA. Estes valores são estimativas derivadas de bases comerciais (Google Maps/Yelp e afins) recolhidas por Rentech Digital e Poidata.io; as discrepâncias refletem datas de atualização e critérios de categorização (ex.: inclusão de tapas bars, casas luso‑brasileiras, etc.).</p>
+
+    <p class="footer">© 2025 • Compilação para apresentação académica. Links abrem em nova aba.</p>
+  </main>
+</body>
+</html>
